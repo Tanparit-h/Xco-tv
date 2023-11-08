@@ -1,0 +1,43 @@
+ext.versions = [
+    "ktx" : "1.12.0",
+    "leanback" : "1.0.0",
+    "appcompat" : "1.6.1",
+    "junit" : "4.13.2",
+    "androidxJunit" : "1.1.5",
+    "androidxEspresso" : "3.5.1",
+    "composeBom" : "2023.10.01",
+    "activitysCompose" : "1.8.0",
+    "viewModelCompose" : "2.6.2",
+    "dagger" : "2.48.1"
+]
+ext.dept = [
+        "androidx" : [
+                "core" : "androidx.core:core-ktx:$versions.ktx",
+                "leanback" : "androidx.leanback:leanback:$versions.leanback",
+                "appcompact" : "androidx.appcompat:appcompat:$versions.appcompact",
+                "junit" : "junit:junit:$versions.junit",
+                "androidxJunit" : "androidx.test.ext:junit:$versions.androidxJunit",
+                "androidxEspresso" : "androidx.test.espresso:espresso-core:$versions.androidxEspresso"
+        ],
+        "material3" : "androidx.compose.material3:material3",
+        "material3Window" : "androidx.compose.material3:material3-window-size-class",
+        "uiPreview" : "androidx.compose.ui:ui-tooling-preview",
+        "uiDebug" : "androidx.compose.ui:ui-tooling",
+        "uiJunit4" : "androidx.compose.ui:ui-test-junit4",
+        "uiManifest" : "androidx.compose.ui:ui-test-manifest",
+        "materialIcons" : "androidx.compose.material:material-icons-core",
+        "materialIconsExtended" : "androidx.compose.material:material-icons-extended",
+        "compose" : [
+                "bom" : "androidx.compose:compose-bom:$versions.composeBom",
+                "activity" : "androidx.activity:activity-compose:$versions.activitysCompose",
+                "viewmodel" : "androidx.lifecycle:lifecycle-viewmodel-compose:$versions.viewModelCompose",
+                "livedata" : "androidx.compose.runtime:runtime-livedata",
+                "rxjava2" : "androidx.compose.runtime:runtime-rxjava2",
+        ],
+        "dagger" : [
+                "hilt" : "com.google.dagger:hilt-android:$versions.dagger",
+                "testing" : "com.google.dagger:hilt-android-testing:$versions.dagger",
+                "compiler" : "com.google.dagger:hilt-compiler:$versions.dagger"
+        ]
+]
+

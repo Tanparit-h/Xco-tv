@@ -1,0 +1,64 @@
+plugins {
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
+    id("kotlin-kapt")
+}
+
+android {
+    namespace = "com.zicure.common"
+    compileSdk = 33
+
+    defaultConfig {
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_1_8
+        targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = "1.8"
+    }
+
+    buildFeatures {
+        compose = true
+    }
+
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.3"
+    }
+}
+
+dependencies {
+
+    implementation dept.androidx.core
+    implementation dept.androidx.appcompact
+    testImplementation dept.androidx.junit
+    androidTestImplementation dept.androidx.androidxJunit
+    androidTestImplementation dept.androidx.androidxEspresso
+
+    implementation dept.compose.bom
+    androidTestImplementation dept.compose.bom
+
+    implementation dept.compose.activity
+    implementation dept.compose.viewmodel
+    implementation dept.compose.livedata
+    implementation dept.compose.rxjava2
+
+    implementation dept.material3
+    implementation dept.uiPreview
+    debugImplementation dept.uiDebug
+
+    androidTestImplementation dept.uiJunit4
+    debugImplementation dept.uiManifest
+
+    implementation dept.materialIcons
+    implementation dept.materialIconsExtended
+    implementation dept.material3Window
+
+    implementation dept.dagger.hilt
+    testImplementation dept.dagger.testing
+    androidTestImplementation dept.dagger.testing
+    testAnnotationProcessor dept.dagger.compiler
+    annotationProcessor dept.dagger.compiler
+    androidTestAnnotationProcessor dept.dagger.compiler
+}
