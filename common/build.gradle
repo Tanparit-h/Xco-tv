@@ -2,6 +2,7 @@ plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
     id("kotlin-kapt")
+    id("dagger.hilt.android.plugin")
 }
 
 android {
@@ -12,8 +13,8 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
         jvmTarget = "1.8"
@@ -30,35 +31,32 @@ android {
 
 dependencies {
 
-    implementation dept.androidx.core
-    implementation dept.androidx.appcompact
-    testImplementation dept.androidx.junit
-    androidTestImplementation dept.androidx.androidxJunit
-    androidTestImplementation dept.androidx.androidxEspresso
+    api dept.androidx.core
+    api dept.androidx.appcompact
+    api dept.compose.bom
+    api dept.compose.activity
+    api dept.compose.viewmodel
+    api dept.compose.livedata
+    api dept.compose.rxjava2
+    api dept.material3
+    api dept.uiPreview
+    api dept.materialIcons
+    api dept.materialIconsExtended
+    api dept.material3Window
+    api dept.dagger.hilt
+    api dept.multidex
 
-    implementation dept.compose.bom
-    androidTestImplementation dept.compose.bom
+    debugApi dept.uiDebug
+    debugApi dept.uiManifest
 
-    implementation dept.compose.activity
-    implementation dept.compose.viewmodel
-    implementation dept.compose.livedata
-    implementation dept.compose.rxjava2
-
-    implementation dept.material3
-    implementation dept.uiPreview
-    debugImplementation dept.uiDebug
-
-    androidTestImplementation dept.uiJunit4
-    debugImplementation dept.uiManifest
-
-    implementation dept.materialIcons
-    implementation dept.materialIconsExtended
-    implementation dept.material3Window
-
-    implementation dept.dagger.hilt
-    testImplementation dept.dagger.testing
-    androidTestImplementation dept.dagger.testing
-    testAnnotationProcessor dept.dagger.compiler
+    testApi dept.dagger.testing
+    testApi dept.androidx.junit
+    androidTestApi dept.androidx.androidxJunit
+    androidTestApi dept.androidx.androidxEspresso
+    androidTestApi dept.compose.bom
+    androidTestApi dept.uiJunit4
+    androidTestApi dept.dagger.testing
     annotationProcessor dept.dagger.compiler
+    testAnnotationProcessor dept.dagger.compiler
     androidTestAnnotationProcessor dept.dagger.compiler
 }

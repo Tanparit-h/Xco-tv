@@ -8,7 +8,8 @@ ext.versions = [
     "composeBom" : "2023.10.01",
     "activitysCompose" : "1.8.0",
     "viewModelCompose" : "2.6.2",
-    "dagger" : "2.48.1"
+    "dagger" : "2.48.1",
+    "multidex" : "2.0.1"
 ]
 ext.dept = [
         "androidx" : [
@@ -38,6 +39,7 @@ ext.dept = [
                 "hilt" : "com.google.dagger:hilt-android:$versions.dagger",
                 "testing" : "com.google.dagger:hilt-android-testing:$versions.dagger",
                 "compiler" : "com.google.dagger:hilt-compiler:$versions.dagger"
-        ]
+        ],
+        "multidex" : "androidx.multidex:multidex:$versions.multidex"
 ]
 
