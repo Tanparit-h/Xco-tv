@@ -52,3 +52,5 @@ val gradientColorsReversed = listOf(
 )
 
 val redC30000 = Color(0xffC30000)
+
+val gray1B1B1B = Color(0xff1B1B1B)

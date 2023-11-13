@@ -6,13 +6,9 @@ import com.orhanobut.logger.Logger
 import com.orhanobut.logger.PrettyFormatStrategy
 import dagger.hilt.android.HiltAndroidApp
 import timber.log.Timber
-import javax.inject.Inject
 
 @HiltAndroidApp()
 class GenericApplication : MultiDexApplication() {
-
-    @Inject
-    lateinit var tree: Timber.Tree
 
     override fun onCreate() {
         super.onCreate()
@@ -25,6 +21,6 @@ class GenericApplication : MultiDexApplication() {
             .methodOffset(3)
             .build()
         Logger.addLogAdapter(AndroidLogAdapter(formatStrategy))
-        Timber.plant(tree)
+        Timber.plant(Timber.DebugTree())
     }
 }
