@@ -1,25 +1,30 @@
 package com.zicure.xcotv.utils
 
-import android.app.Activity
 import android.content.Context
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatDelegate
 import androidx.core.os.LocaleListCompat
+import com.zicure.xcotv.utils.DataStorage.Companion.KEY_DEFAULT_LANGUAGE
+import java.util.Locale
 
 @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 fun setLocaleLang(lang: String, context: Context) {
-    val appLocale = LocaleListCompat.forLanguageTags(lang) //here ta is hardcoded for testing purpose,you can add users selected language code.
+    val appLocale = LocaleListCompat.forLanguageTags(lang)
     AppCompatDelegate.setApplicationLocales(appLocale)
 
-    val editor = context.getSharedPreferences(KEY_DEFAULT_LANGUAGE, Context.MODE_PRIVATE).edit()
-    editor.putString(KEY_LANGUAGE, lang)
-    editor.apply()
+    val resource = context.resources
+    val config = resource.configuration
+    val locale = Locale(lang)
+    Locale.setDefault(locale)
+    config.setLocale(locale)
+    resource.updateConfiguration(config, resource.displayMetrics)
+
+    DataStorage(context).setSynchronousData(KEY_DEFAULT_LANGUAGE, lang)
 }
 
 @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 fun loadLocale(context: Context) {
-    val sharedPreferences = context.getSharedPreferences(KEY_DEFAULT_LANGUAGE, Activity.MODE_PRIVATE)
-    val language = sharedPreferences.getString(KEY_LANGUAGE, "th")
-    setLocaleLang(language!!, context)
+    val language = DataStorage(context).getSynchronousData(KEY_DEFAULT_LANGUAGE)
+    setLocaleLang(language ?: "th", context)
 }

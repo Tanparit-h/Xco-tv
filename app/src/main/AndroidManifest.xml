@@ -22,7 +22,13 @@
             android:exported="true">
         </activity>
 
-        <activity android:name=".presentation.LanguageSelectActivity"
+        <activity android:name=".presentation.SelectLanguageActivity"
+            android:screenOrientation="landscape"
+            android:exported="true">
+        </activity>
+
+
+        <activity android:name=".presentation.profile.SelectProfileActivity"
             android:screenOrientation="landscape"
             android:exported="true">
         </activity>

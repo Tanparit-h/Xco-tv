@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">xco-tv</string>
 
-    <string name="tx_select_language">เลือกภาษาของคุน</string>
+    <string name="tx_select_language">เลือกภาษาของคุณ</string>
     <string name="tx_select_language_th">ภาษาไทย</string>
     <string name="tx_select_language_en">English</string>
+
+    <string name="tx_select_user">เลือกผู้ชม</string>
 </resources>

@@ -34,6 +34,7 @@ import com.zicure.xcotv.utils.BaseTheme
 import com.zicure.xcotv.utils.CustomProgressIndicator
 import com.zicure.xcotv.utils.pxToDp
 import com.zicure.xcotv.utils.redC30000
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.delay
 
 @SuppressLint("CustomSplashScreen")
@@ -41,8 +42,8 @@ import kotlinx.coroutines.delay
 @ExperimentalAnimationApi
 @ExperimentalFoundationApi
 @ExperimentalComposeUiApi
+@AndroidEntryPoint
 class SplashScreenActivity : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -83,7 +84,7 @@ class SplashScreenActivity : AppCompatActivity() {
                         .padding(top = 80.pxToDp()),
                     progress = process.floatValue
                 ) {
-                    val action = Intent(mContext, LanguageSelectActivity::class.java)
+                    val action = Intent(mContext, SelectLanguageActivity::class.java)
                     mContext.startActivity(action)
                     finish()
                 }

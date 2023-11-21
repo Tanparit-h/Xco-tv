@@ -4,4 +4,6 @@
     <string name="tx_select_language">Select your language</string>
     <string name="tx_select_language_th">ภาษาไทย</string>
     <string name="tx_select_language_en">English</string>
+
+    <string name="tx_select_user">Select user</string>
 </resources>
