@@ -8,6 +8,7 @@ import com.zicure.xcotv.domain.usecase.GetUserListUseCase
 import com.zicure.xcotv.utils.Profile
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import timber.log.Timber
 import javax.inject.Inject
 
 @HiltViewModel
@@ -19,8 +20,7 @@ class SelectProfileViewModel @Inject constructor(
     val userList: LiveData<List<Profile>> = _userList
 
     fun getUser() {
-        viewModelScope.launch {
-            _userList.postValue(getUserListUseCase())
-        }
+        _userList.value = getUserListUseCase()
+        Timber.d("user size = ${_userList.value?.size}")
     }
 }

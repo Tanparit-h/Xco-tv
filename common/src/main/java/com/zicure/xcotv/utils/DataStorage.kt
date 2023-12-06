@@ -88,5 +88,6 @@ class DataStorage @Inject constructor(
     companion object {
         val KEY_DEFAULT_LANGUAGE = stringPreferencesKey("KEY_DEFAULT_LANGUAGE")
         val KEY_LANGUAGE = stringPreferencesKey("KEY_LANGUAGE")
+        val KEY_USER_ID = stringPreferencesKey("KEY_USER_ID")
     }
 }

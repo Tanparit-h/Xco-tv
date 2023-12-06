@@ -65,4 +65,13 @@ dependencies {
     kapt "androidx.hilt:hilt-compiler:1.1.0"
     // implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
     implementation(project(":common"))
+
+    implementation "androidx.constraintlayout:constraintlayout-compose:1.0.1"
+
+    implementation "com.github.bumptech.glide:compose:1.0.0-beta01"
+
+    implementation 'androidx.media3:media3-exoplayer:1.2.0'
+    implementation 'androidx.media3:media3-exoplayer-dash:1.2.0'
+    implementation 'androidx.media3:media3-ui:1.2.0'
+    implementation "androidx.media3:media3-exoplayer-hls:1.2.0"
 }
