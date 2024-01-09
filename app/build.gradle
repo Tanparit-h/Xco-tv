@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android'
+    id 'kotlin-parcelize'
 }
 
 apply plugin: 'kotlin-kapt'
@@ -33,6 +34,14 @@ android {
         }
     }
 
+    flavorDimensions "xcotvdimen"
+    productFlavors {
+        prod {
+            dimension "xcotvdimen"
+            buildConfigField "String", "URL_FREE_TV_MEDIA_LIST", '"https://nrc-radiostation.xcoshop.com/BroadcastOnlines/freetv"'
+        }
+    }
+
     defaultConfig {
         multiDexEnabled true
     }
@@ -46,6 +55,7 @@ android {
 
     buildFeatures {
         compose = true
+        buildConfig = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.2"

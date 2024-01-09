@@ -13,9 +13,11 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.remember
 import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.media3.common.C
@@ -35,7 +37,7 @@ import androidx.constraintlayout.compose.ConstraintLayout
 
 @OptIn(UnstableApi::class)
 @Composable
-fun VideoPlayer(uri: Uri) {
+fun VideoPlayer(modifier: Modifier = Modifier, uri: Uri) {
     val context = LocalContext.current
 
     val exoPlayer = remember {
@@ -67,7 +69,7 @@ fun VideoPlayer(uri: Uri) {
     exoPlayer.repeatMode = Player.REPEAT_MODE_ONE
 
     DisposableEffect(
-        AndroidView(factory = {
+        AndroidView(modifier = modifier, factory = {
             PlayerView(context).apply {
                 hideController()
                 useController = false
@@ -83,9 +85,10 @@ fun VideoPlayer(uri: Uri) {
 }
 
 @Composable
-fun MainStreaming() {
+fun MainStreaming(stringUri: String) {
+    val uri = Uri.parse(stringUri)
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
-        val (mainSurface) = createRefs()
+        val (mainSurface, videoView) = createRefs()
         Surface(
             color = gray1B1B1B,
             modifier = Modifier
@@ -93,9 +96,25 @@ fun MainStreaming() {
                 .constrainAs(mainSurface) {
                     start.linkTo(parent.start)
                     top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+                    end.linkTo(parent.end)
                 }
         ) {
+            VideoPlayer(modifier = Modifier
+                .constrainAs(videoView) {
+                    start.linkTo(mainSurface.start)
+                    top.linkTo(mainSurface.top)
+                    bottom.linkTo(mainSurface.bottom)
+                    end.linkTo(mainSurface.end)
+                }, uri
+            )
 
         }
     }
+}
+
+@Preview()
+@Composable
+private fun PreviewMainStreaming() {
+//    MainStreaming("https://commondatastorage.googleapis.com/android-tv/Sample%20videos/Zeitgeist/Zeitgeist%202010_%20Year%20in%20Review.mp4")
 }

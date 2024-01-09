@@ -37,7 +37,7 @@ import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.bumptech.glide.integration.compose.GlideImage
 import com.zicure.xcotv.R
 import com.zicure.xcotv.domain.usecase.GetUserListUseCase
-import com.zicure.xcotv.presentation.streaming.StreamingActivity
+import com.zicure.xcotv.presentation.main.MainActivity
 import com.zicure.xcotv.utils.BaseTheme
 import com.zicure.xcotv.utils.DataStorage
 import com.zicure.xcotv.utils.DataStorage.Companion.KEY_USER_ID
@@ -72,8 +72,9 @@ class SelectProfileActivity : AppCompatActivity() {
 
     @Composable
     private fun SelectProfileScreen() {
+        viewModel.getUser()
         val userProfile = remember {
-            getUserListUseCase.invoke()
+            viewModel.userList.value
         }
         loadLocale(LocalContext.current)
         Column(
@@ -99,7 +100,7 @@ class SelectProfileActivity : AppCompatActivity() {
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
             ) {
-                userProfile.forEach { p ->
+                userProfile?.forEach { p ->
                     ProfileButton(profile = p)
                 }
             }
@@ -147,7 +148,7 @@ class SelectProfileActivity : AppCompatActivity() {
                 .background(gray1B1B1B),
             onClick = {
                 dataStorage.setSynchronousData(KEY_USER_ID, profile.id)
-                val action = Intent(context, StreamingActivity::class.java)
+                val action = Intent(context, MainActivity::class.java)
                 startActivity(action)
             }
         ) {

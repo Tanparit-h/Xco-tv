@@ -85,8 +85,8 @@ class SplashScreenActivity : AppCompatActivity() {
                     progress = process.floatValue
                 ) {
                     val action = Intent(mContext, SelectLanguageActivity::class.java)
-                    mContext.startActivity(action)
                     finish()
+                    mContext.startActivity(action)
                 }
                 IncreaseProgressValue(process, 1f)
             }

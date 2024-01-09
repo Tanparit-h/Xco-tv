@@ -1,0 +1,682 @@
+{
+  "free_tv": [
+    {
+      "type": "SUGGEST_PROGRAM",
+      "name_list": "suggestion",
+      "media_list": [
+        {
+          "name": "HBO",
+          "sub_name": "สหรัฐฯ",
+          "icon": "https://cdn-icons-png.flaticon.com/512/5968/5968668.png",
+          "background": "https://wallpapercave.com/wp/wp5200807.jpg",
+          "banner": "",
+          "media_url": "https://commondatastorage.googleapis.com/android-tv/Sample%20videos/Zeitgeist/Zeitgeist%202010_%20Year%20in%20Review.mp4",
+          "description": "Part of the Warner Bros. Discovery family, HBO has been recognized for decades as one of the most respected and innovative entertainment brands in the world. It’s where the most talented, creative minds choose to tell their stories and where people around the world come to watch iconic, award-winning programs.",
+          "tag_list": [
+            {
+              "tag": "ENTERTAINMENT",
+              "name": "บันเทิง"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        }
+      ]
+    },
+    {
+      "type": "LIST_PROGRAM",
+      "name_list": "ห้ามพลาด ! รายการใหม่",
+      "media_list": [
+        {
+          "name": "MSNBC",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://variety.com/wp-content/uploads/2021/08/MSNBC-Logo.jpg",
+          "media_url": "https://commondatastorage.googleapis.com/android-tv/Sample%20videos/Demo%20Slam/Google%20Demo%20Slam_%2020ft%20Search.mp4",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "ION Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://deadline.com/wp-content/uploads/2016/10/ion-tv-new-logo-2016.jpg",
+          "media_url": "https://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Gmail%20Blue.mp4",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "H History Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/History_Logo.svg/240px-History_Logo.svg.png",
+          "media_url": "https://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Google%20Fiber%20to%20the%20Pole.mp4",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "ION Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://deadline.com/wp-content/uploads/2016/10/ion-tv-new-logo-2016.jpg",
+          "media_url": "https://commondatastorage.googleapis.com/android-tv/Sample%20videos/April%20Fool's%202013/Introducing%20Google%20Nose.mp4",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "H History Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/History_Logo.svg/240px-History_Logo.svg.png",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "ION Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://deadline.com/wp-content/uploads/2016/10/ion-tv-new-logo-2016.jpg",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "H History Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/History_Logo.svg/240px-History_Logo.svg.png",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "ION Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://deadline.com/wp-content/uploads/2016/10/ion-tv-new-logo-2016.jpg",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "H History Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/History_Logo.svg/240px-History_Logo.svg.png",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "ION Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://deadline.com/wp-content/uploads/2016/10/ion-tv-new-logo-2016.jpg",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "H History Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/History_Logo.svg/240px-History_Logo.svg.png",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "ION Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://deadline.com/wp-content/uploads/2016/10/ion-tv-new-logo-2016.jpg",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "H History Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/History_Logo.svg/240px-History_Logo.svg.png",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "ION Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://deadline.com/wp-content/uploads/2016/10/ion-tv-new-logo-2016.jpg",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "H History Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/History_Logo.svg/240px-History_Logo.svg.png",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "ION Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://deadline.com/wp-content/uploads/2016/10/ion-tv-new-logo-2016.jpg",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "H History Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/History_Logo.svg/240px-History_Logo.svg.png",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "ION Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://deadline.com/wp-content/uploads/2016/10/ion-tv-new-logo-2016.jpg",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "H History Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/History_Logo.svg/240px-History_Logo.svg.png",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "ION Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://deadline.com/wp-content/uploads/2016/10/ion-tv-new-logo-2016.jpg",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "H History Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/History_Logo.svg/240px-History_Logo.svg.png",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "ION Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://deadline.com/wp-content/uploads/2016/10/ion-tv-new-logo-2016.jpg",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "H History Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/History_Logo.svg/240px-History_Logo.svg.png",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        }
+      ]
+    },
+    {
+      "type": "LIST_PROGRAM",
+      "name_list": "ช่องทีวียอดนิยม",
+      "media_list": [
+        {
+          "name": "ION Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://deadline.com/wp-content/uploads/2016/10/ion-tv-new-logo-2016.jpg",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "MSNBC",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://variety.com/wp-content/uploads/2021/08/MSNBC-Logo.jpg",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        },
+        {
+          "name": "H History Television",
+          "sub_name": "",
+          "icon": "",
+          "background": "",
+          "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f5/History_Logo.svg/240px-History_Logo.svg.png",
+          "media_url": "",
+          "description": "",
+          "tag_list": [
+            {
+              "tag": "NEWS",
+              "name": "ข่าว"
+            },
+            {
+              "tag": "TELEVISION",
+              "name": "ทีวี"
+            },
+            {
+              "tag": "INTERNATIONAL",
+              "name": "ต่างประเทศ"
+            }
+          ],
+          "is_list": false
+        }
+      ]
+    },
+    {
+      "type": "LIST_BANNER",
+      "name_list": "ช่องทีวีต่างประเทศ",
+      "media_list": [
+        {
+          "name": "ไทย",
+          "banner": "https://upload.wikimedia.org/wikipedia/commons/e/e4/%E0%B8%98%E0%B8%87%E0%B8%8A%E0%B8%B2%E0%B8%95%E0%B8%B4%E0%B9%84%E0%B8%97%E0%B8%A2.png",
+          "media_url": "",
+          "is_list": false
+        },
+        {
+          "name": "ลาว",
+          "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/5/56/Flag_of_Laos.svg/250px-Flag_of_Laos.svg.png",
+          "media_url": "",
+          "is_list": false
+        },
+        {
+          "name": "กัมพูชา",
+          "banner": "https://upload.wikimedia.org/wikipedia/commons/thumb/8/83/Flag_of_Cambodia.svg/235px-Flag_of_Cambodia.svg.png",
+          "url": "",
+          "is_list": false
+        }
+      ]
+    }
+  ]
+}

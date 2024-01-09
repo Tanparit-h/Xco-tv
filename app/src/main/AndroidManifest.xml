@@ -32,7 +32,7 @@
         android:theme="@style/Theme.AppCompat.NoActionBar"
         android:banner="@drawable/ic_xcotv">
 
-        <activity android:name=".presentation.MainActivity"
+        <activity android:name=".presentation.main.MainActivity"
             android:screenOrientation="landscape"
             android:exported="true">
         </activity>

@@ -7,4 +7,8 @@
 
     <string name="tx_select_user">Select user</string>
     <string name="tx_manage_profile">Manage user profile</string>
+    <string name="user_account">User Account</string>
+    <string name="search">Search</string>
+    <string name="free_tv">Free TV</string>
+    <string name="log_out">Log out</string>
 </resources>
