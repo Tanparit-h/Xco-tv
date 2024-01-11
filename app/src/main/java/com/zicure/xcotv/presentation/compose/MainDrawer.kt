@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.selectableGroup
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -19,9 +18,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.tv.foundation.lazy.list.TvLazyColumn
 import androidx.tv.foundation.lazy.list.items
@@ -36,7 +36,7 @@ import androidx.tv.material3.Text
 import androidx.tv.material3.rememberDrawerState
 import com.zicure.xcotv.utils.DrawerScreen
 import com.zicure.xcotv.utils.fontFCIconic
-import com.zicure.xcotv.utils.grayAAAAAA
+import com.zicure.xcotv.utils.grayFFAAAAAA
 import com.zicure.xcotv.utils.screenList
 
 //
@@ -45,6 +45,7 @@ import com.zicure.xcotv.utils.screenList
 @Composable
 fun MainDrawer(
     modifier: Modifier = Modifier,
+    navController: NavHostController = rememberNavController(),
     builder: NavGraphBuilder.() -> Unit
 ) {
     val drawerState = rememberDrawerState(DrawerValue.Closed)
@@ -53,7 +54,6 @@ fun MainDrawer(
     val paddingValue = 12.dp
     val scaleValue = 1.2f
 
-    val navController = rememberNavController()
     val navItemColor = NavigationDrawerItemDefaults.colors(
 //        focusedContainerColor = Color.Transparent
 //        selectedContainerColor = Color.Transparent,
@@ -89,7 +89,6 @@ fun MainDrawer(
                     shape = navShape,
                     scale = navScale,
                     onClick = {
-//                        drawerState.setValue(DrawerValue.Closed)
                         navController.navigate(DrawerScreen.UserAccountDrawer.route)
                     },
                     leadingContent = {
@@ -98,14 +97,13 @@ fun MainDrawer(
                                 .size(72.dp),
                             imageVector = DrawerScreen.UserAccountDrawer.icon,
                             contentDescription = null,
-                            tint = grayAAAAAA
+                            tint = grayFFAAAAAA
                         )
                     }
                 ) {
-//                    if (hasFocus) drawerState.setValue(DrawerValue.Open)
                     Text(
                         stringResource(id = DrawerScreen.UserAccountDrawer.title),
-                        color = grayAAAAAA,
+                        color = grayFFAAAAAA,
                         fontFamily = fontFCIconic,
                         fontWeight = FontWeight.Normal,
                         fontSize = 24.sp
@@ -140,14 +138,13 @@ fun MainDrawer(
                                         .size(72.dp),
                                     imageVector = screen.icon,
                                     contentDescription = null,
-                                    tint = grayAAAAAA
+                                    tint = grayFFAAAAAA
                                 )
                             }
                         ) {
-//                            if (hasFocus) drawerState.setValue(DrawerValue.Open)
                             Text(
                                 stringResource(id = screen.title),
-                                color = grayAAAAAA,
+                                color = grayFFAAAAAA,
                                 fontFamily = fontFCIconic,
                                 fontWeight = FontWeight.Normal,
                                 fontSize = 24.sp
@@ -162,7 +159,6 @@ fun MainDrawer(
                     scale = navScale,
                     colors = navItemColor,
                     onClick = {
-//                        drawerState.setValue(DrawerValue.Closed)
                         navController.navigate(DrawerScreen.LogOutDrawer.route)
                     },
                     leadingContent = {
@@ -171,14 +167,13 @@ fun MainDrawer(
                                 .size(72.dp),
                             imageVector = DrawerScreen.LogOutDrawer.icon,
                             contentDescription = null,
-                            tint = grayAAAAAA
+                            tint = grayFFAAAAAA
                         )
                     }
                 ) {
-//                    if (hasFocus) drawerState.setValue(DrawerValue.Open)
                     Text(
                         stringResource(id = DrawerScreen.LogOutDrawer.title),
-                        color = grayAAAAAA,
+                        color = grayFFAAAAAA,
                         fontFamily = fontFCIconic,
                         fontWeight = FontWeight.Normal,
                         fontSize = 24.sp
@@ -194,7 +189,6 @@ fun MainDrawer(
         ),
         modifier = modifier
     ) {
-        /*Added Navigation instead of changing screen*/
         NavHost(
             navController = navController,
             startDestination = DrawerScreen.FreeTVScreenDrawer.route,

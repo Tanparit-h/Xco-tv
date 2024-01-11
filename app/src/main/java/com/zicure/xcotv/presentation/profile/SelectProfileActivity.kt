@@ -10,14 +10,11 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.OutlinedButton
 import androidx.compose.material3.Text
@@ -42,8 +39,9 @@ import com.zicure.xcotv.utils.BaseTheme
 import com.zicure.xcotv.utils.DataStorage
 import com.zicure.xcotv.utils.DataStorage.Companion.KEY_USER_ID
 import com.zicure.xcotv.utils.Profile
+import com.zicure.xcotv.utils.XcotvTextButton
 import com.zicure.xcotv.utils.fontFCIconic
-import com.zicure.xcotv.utils.gray1B1B1B
+import com.zicure.xcotv.utils.grayFF1B1B1B
 import com.zicure.xcotv.utils.loadLocale
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
@@ -80,7 +78,7 @@ class SelectProfileActivity : AppCompatActivity() {
         Column(
             modifier = Modifier
                 .fillMaxSize()
-                .background(gray1B1B1B),
+                .background(grayFF1B1B1B),
             verticalArrangement = Arrangement.Center,
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
@@ -95,7 +93,7 @@ class SelectProfileActivity : AppCompatActivity() {
             )
             Row(
                 modifier = Modifier
-                    .background(gray1B1B1B)
+                    .background(grayFF1B1B1B)
                     .wrapContentSize(unbounded = true),
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.Center
@@ -104,32 +102,14 @@ class SelectProfileActivity : AppCompatActivity() {
                     ProfileButton(profile = p)
                 }
             }
-            Button(
-                modifier = Modifier
-                    .wrapContentSize(unbounded = true)
-                    .padding(all = 16.dp),
-                shape = RoundedCornerShape(16),
-                colors = ButtonDefaults.buttonColors(
-                    containerColor = Color.White,
-                    contentColor = Color.White
-                ),
-                onClick = {
-                    //TODO: Padding for manage profile page
-                    Timber.d("Padding for manage profile page")
-                }
-            ) {
 
-                Spacer(modifier = Modifier.weight(0.5f))
-                Text(
-                    modifier = Modifier
-                        .padding(start = 12.dp),
-                    text = getString(R.string.tx_manage_profile),
-                    color = gray1B1B1B,
-                    fontFamily = fontFCIconic,
-                    fontWeight = FontWeight.Normal,
-                    fontSize = 24.sp
-                )
-                Spacer(modifier = Modifier.weight(0.5f))
+            XcotvTextButton(
+                modifier = Modifier
+                    .padding(all = 16.dp),
+                text = getString(R.string.tx_manage_profile)
+            ) {
+                //TODO: Padding for manage profile page
+                Timber.d("Padding for manage profile page")
             }
         }
     }
@@ -145,7 +125,7 @@ class SelectProfileActivity : AppCompatActivity() {
             border = BorderStroke(0.dp, Color.Transparent),
             modifier = Modifier
                 .padding(all = 4.dp)
-                .background(gray1B1B1B),
+                .background(grayFF1B1B1B),
             onClick = {
                 dataStorage.setSynchronousData(KEY_USER_ID, profile.id)
                 val action = Intent(context, MainActivity::class.java)

@@ -23,6 +23,11 @@ fun setLocaleLang(lang: String, context: Context) {
     DataStorage(context).setSynchronousData(KEY_DEFAULT_LANGUAGE, lang)
 }
 
+fun isSetLanguage(context: Context): Boolean {
+    val language = DataStorage(context).getSynchronousData(KEY_DEFAULT_LANGUAGE)
+    return language != null
+}
+
 @RequiresApi(Build.VERSION_CODES.JELLY_BEAN_MR1)
 fun loadLocale(context: Context) {
     val language = DataStorage(context).getSynchronousData(KEY_DEFAULT_LANGUAGE)

@@ -11,4 +11,8 @@
     <string name="search">Search</string>
     <string name="free_tv">Free TV</string>
     <string name="log_out">Log out</string>
+    <string name="play_now">Play</string>
+    <string name="info">info</string>
+    <string name="my_list">My List</string>
+    <string name="language">ภาษา / Language</string>
 </resources>

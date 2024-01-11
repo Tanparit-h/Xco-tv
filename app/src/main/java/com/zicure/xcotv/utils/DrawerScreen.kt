@@ -6,6 +6,7 @@ import androidx.compose.material.icons.outlined.AccountCircle
 import androidx.compose.material.icons.outlined.ExitToApp
 import androidx.compose.material.icons.outlined.Search
 import androidx.compose.material.icons.outlined.Sensors
+import androidx.compose.material.icons.outlined.Translate
 import androidx.compose.ui.graphics.vector.ImageVector
 import com.zicure.xcotv.R
 
@@ -34,6 +35,12 @@ sealed class DrawerScreen(
         R.string.free_tv,
         R.string.free_tv
     )
+    data object LanguageScreenDrawer : DrawerScreen(
+        "LanguageScreen",
+        Icons.Outlined.Translate,
+        R.string.language,
+        R.string.language
+    )
 
     data object LogOutDrawer : DrawerScreen(
         "LogOut",
@@ -45,5 +52,6 @@ sealed class DrawerScreen(
 
 val screenList = listOf(
     DrawerScreen.SearchScreenDrawer,
-    DrawerScreen.FreeTVScreenDrawer
+    DrawerScreen.FreeTVScreenDrawer,
+    DrawerScreen.LanguageScreenDrawer
 )

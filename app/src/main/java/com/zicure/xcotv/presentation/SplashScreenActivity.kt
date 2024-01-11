@@ -30,8 +30,10 @@ import androidx.compose.ui.res.imageResource
 import androidx.compose.ui.tooling.preview.Devices
 import androidx.compose.ui.tooling.preview.Preview
 import com.zicure.xcotv.R
+import com.zicure.xcotv.presentation.profile.SelectProfileActivity
 import com.zicure.xcotv.utils.BaseTheme
 import com.zicure.xcotv.utils.CustomProgressIndicator
+import com.zicure.xcotv.utils.isSetLanguage
 import com.zicure.xcotv.utils.pxToDp
 import com.zicure.xcotv.utils.redC30000
 import dagger.hilt.android.AndroidEntryPoint
@@ -84,7 +86,11 @@ class SplashScreenActivity : AppCompatActivity() {
                         .padding(top = 80.pxToDp()),
                     progress = process.floatValue
                 ) {
-                    val action = Intent(mContext, SelectLanguageActivity::class.java)
+                    val action = if (isSetLanguage(mContext)) {
+                        Intent(mContext, SelectProfileActivity::class.java)
+                    } else {
+                        Intent(mContext, SelectLanguageActivity::class.java)
+                    }
                     finish()
                     mContext.startActivity(action)
                 }
@@ -102,11 +108,5 @@ class SplashScreenActivity : AppCompatActivity() {
                 current.floatValue += 0.05f
             }
         }
-    }
-
-    @Preview(device = Devices.AUTOMOTIVE_1024p)
-    @Composable
-    private fun PreviewSplashScreen() {
-        SplashScreen()
     }
 }

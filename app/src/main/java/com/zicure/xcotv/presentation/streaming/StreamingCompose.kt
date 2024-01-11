@@ -1,24 +1,20 @@
 package com.zicure.xcotv.presentation.streaming
 
 import android.net.Uri
+import android.util.Log
 import android.view.ViewGroup.LayoutParams.MATCH_PARENT
 import android.widget.FrameLayout
 import androidx.annotation.OptIn
+import androidx.compose.foundation.focusable
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.Surface
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.DisposableEffect
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.focus.FocusRequester.Companion.createRefs
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import androidx.compose.ui.viewinterop.AndroidView
 import androidx.media3.common.C
 import androidx.media3.common.MediaItem
@@ -32,13 +28,37 @@ import androidx.media3.exoplayer.hls.HlsMediaSource
 import androidx.media3.exoplayer.source.ProgressiveMediaSource
 import androidx.media3.ui.AspectRatioFrameLayout
 import androidx.media3.ui.PlayerView
-import com.zicure.xcotv.utils.gray1B1B1B
+import com.zicure.xcotv.utils.grayFF1B1B1B
 import androidx.constraintlayout.compose.ConstraintLayout
 
 @OptIn(UnstableApi::class)
 @Composable
-fun VideoPlayer(modifier: Modifier = Modifier, uri: Uri) {
+private fun VideoPlayer(modifier: Modifier = Modifier, exoPlayer: ExoPlayer) {
     val context = LocalContext.current
+
+    DisposableEffect(
+        AndroidView(modifier = modifier, factory = {
+            PlayerView(context).apply {
+                hideController()
+                useController = false
+                resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
+
+                player = exoPlayer
+                layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
+            }
+        })
+    ) {
+        onDispose { exoPlayer.release() }
+    }
+}
+
+@OptIn(UnstableApi::class)
+@Composable
+fun GetExoPlayer(
+    stringUri: String?
+): ExoPlayer {
+    val context = LocalContext.current
+    val uri = Uri.parse(stringUri)
 
     val exoPlayer = remember {
         ExoPlayer.Builder(context)
@@ -67,30 +87,21 @@ fun VideoPlayer(modifier: Modifier = Modifier, uri: Uri) {
     exoPlayer.playWhenReady = true
     exoPlayer.videoScalingMode = C.VIDEO_SCALING_MODE_SCALE_TO_FIT_WITH_CROPPING
     exoPlayer.repeatMode = Player.REPEAT_MODE_ONE
-
-    DisposableEffect(
-        AndroidView(modifier = modifier, factory = {
-            PlayerView(context).apply {
-                hideController()
-                useController = false
-                resizeMode = AspectRatioFrameLayout.RESIZE_MODE_ZOOM
-
-                player = exoPlayer
-                layoutParams = FrameLayout.LayoutParams(MATCH_PARENT, MATCH_PARENT)
-            }
-        })
-    ) {
-        onDispose { exoPlayer.release() }
-    }
+    return exoPlayer
 }
 
 @Composable
-fun MainStreaming(stringUri: String) {
-    val uri = Uri.parse(stringUri)
-    ConstraintLayout(modifier = Modifier.fillMaxSize()) {
+fun MainStreaming(exoPlayer: ExoPlayer, isResume: Boolean) {
+    val position = remember {
+        mutableLongStateOf(exoPlayer.currentPosition)
+    }
+    ConstraintLayout(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
         val (mainSurface, videoView) = createRefs()
         Surface(
-            color = gray1B1B1B,
+            color = grayFF1B1B1B,
             modifier = Modifier
                 .fillMaxSize(1f)
                 .constrainAs(mainSurface) {
@@ -100,14 +111,16 @@ fun MainStreaming(stringUri: String) {
                     end.linkTo(parent.end)
                 }
         ) {
-            VideoPlayer(modifier = Modifier
-                .constrainAs(videoView) {
-                    start.linkTo(mainSurface.start)
-                    top.linkTo(mainSurface.top)
-                    bottom.linkTo(mainSurface.bottom)
-                    end.linkTo(mainSurface.end)
-                }, uri
+            VideoPlayer(
+                modifier = Modifier
+                    .constrainAs(videoView) {
+                        start.linkTo(mainSurface.start)
+                        top.linkTo(mainSurface.top)
+                        bottom.linkTo(mainSurface.bottom)
+                        end.linkTo(mainSurface.end)
+                    }, exoPlayer
             )
+            Log.d("TAG", "MainStreaming position: $position")
 
         }
     }
