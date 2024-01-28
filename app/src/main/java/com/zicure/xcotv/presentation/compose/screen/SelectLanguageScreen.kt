@@ -15,8 +15,17 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.FocusState
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.platform.LocalContext
@@ -39,11 +48,22 @@ fun SelectLanguageScreen(
     action: () -> Unit
 ) {
     val mContext = LocalContext.current
+    var focusState by remember { mutableStateOf<FocusState?>(null) }
+    val focusRequester = remember { FocusRequester() }
     loadLocale(LocalContext.current)
+    LaunchedEffect(key1 = mContext) {
+        if (focusState?.hasFocus == false) {
+            focusRequester.requestFocus()
+        }
+    }
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .background(grayFF1B1B1B),
+            .background(grayFF1B1B1B)
+            .focusRequester(focusRequester)
+            .onFocusChanged {
+                focusState = it
+            },
         verticalArrangement = Arrangement.Center,
         horizontalAlignment = Alignment.CenterHorizontally
     ) {

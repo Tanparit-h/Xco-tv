@@ -21,6 +21,7 @@ import com.zicure.xcotv.domain.usecase.GetUserListUseCase
 import com.zicure.xcotv.presentation.compose.VideoDrawer
 import com.zicure.xcotv.utils.BaseTheme
 import com.zicure.xcotv.utils.DataStorage
+import com.zicure.xcotv.utils.DrawerScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -56,7 +57,10 @@ class StreamingActivity : AppCompatActivity() {
                 BackHandler {
                     if (drawerState.currentValue == DrawerValue.Open) {
                         scope.launch {
-                            drawerState.close()
+                            val returnIntent = intent
+                            returnIntent.putExtra(MEDIA_RESULT, DrawerScreen.FreeTVScreenDrawer.route)
+                            setResult(RESULT_OK, returnIntent)
+                            finish()
                         }
                     } else {
                         scope.launch {

@@ -13,15 +13,21 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.FocusState
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.LifecycleOwner
+import androidx.tv.material3.DrawerState
+import androidx.tv.material3.ExperimentalTvMaterial3Api
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.zicure.xcotv.domain.model.FreeTVListModel
 import com.zicure.xcotv.domain.model.MediaListType
@@ -31,17 +37,24 @@ import com.zicure.xcotv.presentation.main.MainViewModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 
-@OptIn(ExperimentalGlideComposeApi::class, ExperimentalMaterialApi::class)
 @SuppressLint("CoroutineCreationDuringComposition")
 @Composable
-fun FreeTVScreen(viewModel: MainViewModel, navMedia: (intent: Intent) -> Unit) {
+fun FreeTVScreen(
+    viewModel: MainViewModel,
+    navMedia: (intent: Intent) -> Unit
+) {
     val lifecycleOwner = LocalLifecycleOwner.current
+    var focusState by remember { mutableStateOf<FocusState?>(null) }
     val focusRequester = remember { FocusRequester() }
     val freeTVMediaList = remember {
         mutableStateOf(FreeTVListModel(null))
     }
     getFreeTVListModel(viewModel, lifecycleOwner, freeTVMediaList)
-
+    LaunchedEffect(key1 = focusState) {
+        if (focusState?.hasFocus == false) {
+            focusRequester.requestFocus()
+        }
+    }
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
         val (surface) = createRefs()
         if (freeTVMediaList.value.freeTV?.size == 0) {
@@ -56,6 +69,8 @@ fun FreeTVScreen(viewModel: MainViewModel, navMedia: (intent: Intent) -> Unit) {
                     bottom.linkTo(parent.bottom)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
+                }.onFocusChanged {
+                    focusState = it
                 }) {
                 Text(text = "FreeTVScreen: ${freeTVMediaList.value.freeTV?.size}")
             }

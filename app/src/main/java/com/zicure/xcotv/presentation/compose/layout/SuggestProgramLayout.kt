@@ -18,10 +18,19 @@ import androidx.compose.material.icons.filled.CheckCircle
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.PlayCircleFilled
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithCache
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.FocusState
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
 import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
@@ -47,8 +56,18 @@ import com.zicure.xcotv.utils.grayFFAAAAAA
 
 @Composable
 @OptIn(ExperimentalGlideComposeApi::class)
-fun SuggestProgramLayout(media: FreeTv, navMedia: (intent: Intent) -> Unit) {
+fun SuggestProgramLayout(
+    media: FreeTv,
+    navMedia: (intent: Intent) -> Unit
+) {
     val context = LocalContext.current
+    var focusState by remember { mutableStateOf<FocusState?>(null) }
+    val focusRequester = remember { FocusRequester() }
+    LaunchedEffect(key1 = focusState) {
+        if (focusState?.hasFocus == false) {
+            focusRequester.requestFocus()
+        }
+    }
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -80,7 +99,7 @@ fun SuggestProgramLayout(media: FreeTv, navMedia: (intent: Intent) -> Unit) {
         Column(
             modifier = Modifier
                 .fillMaxHeight()
-                .fillMaxWidth(0.5f)
+                .width(600.dp)
                 .zIndex(3f)
                 .padding(top = 100.dp, start = 20.dp)
         ) {
@@ -130,6 +149,7 @@ fun SuggestProgramLayout(media: FreeTv, navMedia: (intent: Intent) -> Unit) {
 
             Text(
                 modifier = Modifier
+                    .width(500.dp)
                     .padding(top = 40.dp),
                 text = media.mediaList[0].description,
                 color = Color.White,
@@ -147,7 +167,11 @@ fun SuggestProgramLayout(media: FreeTv, navMedia: (intent: Intent) -> Unit) {
                     .padding(top = 60.dp),
             ) {
                 XcotvIconTextButton(
-                    modifier = Modifier,
+                    modifier = Modifier
+                        .focusRequester(focusRequester)
+                        .onFocusChanged {
+                            focusState = it
+                        },
                     icon = Icons.Outlined.PlayCircleFilled,
                     text = ContextCompat.getString(LocalContext.current, R.string.play_now),
                     colorIcon = Color.Red,

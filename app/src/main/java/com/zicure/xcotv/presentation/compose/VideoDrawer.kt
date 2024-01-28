@@ -77,7 +77,7 @@ fun VideoDrawer(
                         icon = {
                             Icon(
                                 modifier = Modifier
-                                    .size(36.dp),
+                                    .size(24.dp),
                                 imageVector = DrawerScreen.UserAccountDrawer.icon,
                                 contentDescription = null,
                                 tint = grayFFAAAAAA
@@ -115,7 +115,7 @@ fun VideoDrawer(
                                 icon = {
                                     Icon(
                                         modifier = Modifier
-                                            .size(36.dp),
+                                            .size(24.dp),
                                         imageVector = screen.icon,
                                         contentDescription = null,
                                         tint = grayFFAAAAAA
@@ -144,7 +144,7 @@ fun VideoDrawer(
                         icon = {
                             Icon(
                                 modifier = Modifier
-                                    .size(36.dp),
+                                    .size(24.dp),
                                 imageVector = DrawerScreen.LogOutDrawer.icon,
                                 contentDescription = null,
                                 tint = grayFFAAAAAA

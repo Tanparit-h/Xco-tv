@@ -4,31 +4,28 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.graphics.TileMode
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.rememberNavController
 import androidx.tv.foundation.lazy.list.TvLazyColumn
 import androidx.tv.foundation.lazy.list.items
+import androidx.tv.material3.DrawerState
 import androidx.tv.material3.DrawerValue
 import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.Icon
-import androidx.tv.material3.ModalNavigationDrawer
+import androidx.tv.material3.NavigationDrawer
 import androidx.tv.material3.NavigationDrawerItem
 import androidx.tv.material3.NavigationDrawerItemDefaults
 import androidx.tv.material3.NavigationDrawerItemScale
@@ -50,14 +47,14 @@ fun MainDrawer(
 ) {
     val drawerState = rememberDrawerState(DrawerValue.Closed)
 
-    val collapsedDrawerItemWidth = 42.dp
-    val paddingValue = 12.dp
-    val scaleValue = 1.2f
+    val scaleValue = 1f
 
     val navItemColor = NavigationDrawerItemDefaults.colors(
-//        focusedContainerColor = Color.Transparent
-//        selectedContainerColor = Color.Transparent,
+        focusedContainerColor = Color.LightGray.copy(alpha = 0.3f),
+//        focusedContentColor = Color.Red
+        selectedContainerColor = Color.Transparent,
 //        selectedContentColor = Color.Transparent
+//        selectedContentColor = Color.Red
     )
     val navShape = NavigationDrawerItemDefaults.shape(
         shape = RectangleShape
@@ -73,13 +70,13 @@ fun MainDrawer(
         pressedSelectedScale = scaleValue
     )
 
-    ModalNavigationDrawer(
+    NavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
             Column(
                 Modifier
                     .fillMaxHeight()
-                    .padding(4.dp),
+                    .selectableGroup(),
                 horizontalAlignment = Alignment.Start,
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
@@ -90,6 +87,8 @@ fun MainDrawer(
                     scale = navScale,
                     onClick = {
                         navController.navigate(DrawerScreen.UserAccountDrawer.route)
+                        drawerState.setValue(DrawerValue.Open)
+                        drawerState.setValue(DrawerValue.Closed)
                     },
                     leadingContent = {
                         Icon(
@@ -97,13 +96,13 @@ fun MainDrawer(
                                 .size(72.dp),
                             imageVector = DrawerScreen.UserAccountDrawer.icon,
                             contentDescription = null,
-                            tint = grayFFAAAAAA
+                            tint = if (navController.currentDestination?.route == DrawerScreen.UserAccountDrawer.route) Color.Red else grayFFAAAAAA
                         )
                     }
                 ) {
                     Text(
                         stringResource(id = DrawerScreen.UserAccountDrawer.title),
-                        color = grayFFAAAAAA,
+                        color = if (navController.currentDestination?.route == DrawerScreen.UserAccountDrawer.route) Color.Red else grayFFAAAAAA,
                         fontFamily = fontFCIconic,
                         fontWeight = FontWeight.Normal,
                         fontSize = 24.sp
@@ -131,6 +130,8 @@ fun MainDrawer(
                                         inclusive = true
                                     }
                                 }
+                                drawerState.setValue(DrawerValue.Open)
+                                drawerState.setValue(DrawerValue.Closed)
                             },
                             leadingContent = {
                                 Icon(
@@ -138,13 +139,13 @@ fun MainDrawer(
                                         .size(72.dp),
                                     imageVector = screen.icon,
                                     contentDescription = null,
-                                    tint = grayFFAAAAAA
+                                    tint = if (navController.currentDestination?.route == screen.route) Color.Red else grayFFAAAAAA
                                 )
                             }
                         ) {
                             Text(
                                 stringResource(id = screen.title),
-                                color = grayFFAAAAAA,
+                                color = if (navController.currentDestination?.route == screen.route) Color.Red else grayFFAAAAAA,
                                 fontFamily = fontFCIconic,
                                 fontWeight = FontWeight.Normal,
                                 fontSize = 24.sp
@@ -160,6 +161,8 @@ fun MainDrawer(
                     colors = navItemColor,
                     onClick = {
                         navController.navigate(DrawerScreen.LogOutDrawer.route)
+                        drawerState.setValue(DrawerValue.Open)
+                        drawerState.setValue(DrawerValue.Closed)
                     },
                     leadingContent = {
                         Icon(
@@ -167,13 +170,13 @@ fun MainDrawer(
                                 .size(72.dp),
                             imageVector = DrawerScreen.LogOutDrawer.icon,
                             contentDescription = null,
-                            tint = grayFFAAAAAA
+                            tint = if (navController.currentDestination?.route == DrawerScreen.LogOutDrawer.route) Color.Red else grayFFAAAAAA
                         )
                     }
                 ) {
                     Text(
                         stringResource(id = DrawerScreen.LogOutDrawer.title),
-                        color = grayFFAAAAAA,
+                        color = if (navController.currentDestination?.route == DrawerScreen.LogOutDrawer.route) Color.Red else grayFFAAAAAA,
                         fontFamily = fontFCIconic,
                         fontWeight = FontWeight.Normal,
                         fontSize = 24.sp
@@ -182,11 +185,12 @@ fun MainDrawer(
             }
 
         },
-        scrimBrush = Brush.linearGradient(
-            colors = listOf(
-                Color.Black, Color.Transparent
-            ), tileMode = TileMode.Clamp
-        ),
+//        scrimBrush = SolidColor(Color.Black),
+//        Brush.linearGradient(
+//            colors = listOf(
+//                Color.Black, Color.Transparent
+//            ), tileMode = TileMode.
+//        ),
         modifier = modifier
     ) {
         NavHost(
@@ -194,7 +198,7 @@ fun MainDrawer(
             startDestination = DrawerScreen.FreeTVScreenDrawer.route,
             modifier = Modifier
                 .fillMaxSize()
-                .padding(start = collapsedDrawerItemWidth + (paddingValue * 2))
+//                .padding(start = collapsedDrawerItemWidth + (paddingValue * 2))
         ) {
             builder()
         }
