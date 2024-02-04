@@ -27,9 +27,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.ImageBitmap
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.imageResource
-import androidx.compose.ui.tooling.preview.Devices
-import androidx.compose.ui.tooling.preview.Preview
 import com.zicure.xcotv.R
+import com.zicure.xcotv.presentation.language.SelectLanguageActivity
 import com.zicure.xcotv.presentation.profile.SelectProfileActivity
 import com.zicure.xcotv.utils.BaseTheme
 import com.zicure.xcotv.utils.CustomProgressIndicator
@@ -50,7 +49,7 @@ class SplashScreenActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
-            BaseTheme {
+            BaseTheme(isLoadLanguage = false) {
                 SplashScreen()
             }
         }
@@ -104,7 +103,7 @@ class SplashScreenActivity : AppCompatActivity() {
         if (current.floatValue > target) return
         LaunchedEffect(target) {
             while (current.floatValue < target) {
-                delay(20)
+                delay(40)
                 current.floatValue += 0.05f
             }
         }

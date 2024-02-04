@@ -91,7 +91,7 @@ fun GetExoPlayer(
 }
 
 @Composable
-fun MainStreaming(exoPlayer: ExoPlayer, isResume: Boolean) {
+fun MainStreaming(exoPlayer: ExoPlayer) {
     val position = remember {
         mutableLongStateOf(exoPlayer.currentPosition)
     }

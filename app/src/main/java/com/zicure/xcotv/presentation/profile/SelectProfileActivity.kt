@@ -130,6 +130,7 @@ class SelectProfileActivity : AppCompatActivity() {
                 dataStorage.setSynchronousData(KEY_USER_ID, profile.id)
                 val action = Intent(context, MainActivity::class.java)
                 startActivity(action)
+                finish()
             }
         ) {
             Column(

@@ -7,6 +7,8 @@ import androidx.annotation.RequiresApi
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.datastore.preferences.core.edit
+import androidx.datastore.preferences.core.intPreferencesKey
+import androidx.datastore.preferences.core.longPreferencesKey
 import androidx.datastore.preferences.core.stringPreferencesKey
 import androidx.datastore.preferences.preferencesDataStore
 import dagger.hilt.android.qualifiers.ApplicationContext
@@ -89,5 +91,7 @@ class DataStorage @Inject constructor(
         val KEY_DEFAULT_LANGUAGE = stringPreferencesKey("KEY_DEFAULT_LANGUAGE")
         val KEY_LANGUAGE = stringPreferencesKey("KEY_LANGUAGE")
         val KEY_USER_ID = stringPreferencesKey("KEY_USER_ID")
+
+        fun String.toPreferencesKey() = longPreferencesKey("KEY_CUSTOM_MEDIA_$this")
     }
 }

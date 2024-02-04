@@ -35,9 +35,10 @@ private val LightColorPalette = lightColors(
 @Composable
 fun BaseTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
+    isLoadLanguage: Boolean = true,
     content: @Composable () -> Unit,
 ) {
-    loadLocale(LocalContext.current)
+    if (isLoadLanguage) loadLocale(LocalContext.current)
     val colors = if (darkTheme) {
         DarkColorPalette
     } else {

@@ -13,14 +13,17 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.navigation.NavController
 import androidx.navigation.compose.rememberNavController
 import androidx.tv.material3.ExperimentalTvMaterial3Api
+import com.zicure.xcotv.domain.model.Media
 import com.zicure.xcotv.domain.usecase.GetUserListUseCase
 import com.zicure.xcotv.presentation.compose.VideoDrawer
 import com.zicure.xcotv.utils.BaseTheme
 import com.zicure.xcotv.utils.DataStorage
+import com.zicure.xcotv.utils.DataStorage.Companion.toPreferencesKey
 import com.zicure.xcotv.utils.DrawerScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
@@ -28,8 +31,7 @@ import javax.inject.Inject
 
 @AndroidEntryPoint
 class StreamingActivity : AppCompatActivity() {
-    private val MEDIA_URL = "MEDIA_URL"
-    private val MEDIA_RESUME = "MEDIA_RESUME"
+    private val MEDIA = "MEDIA"
     private val MEDIA_RESULT = "MEDIA_RESULT"
 
     @Inject
@@ -37,26 +39,34 @@ class StreamingActivity : AppCompatActivity() {
 
     @Inject
     lateinit var dataStorage: DataStorage
+
     private lateinit var exoPlayer: ExoPlayer
 
     private lateinit var drawerState: DrawerState
     private lateinit var navController: NavController
+    private lateinit var media: Media
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val mediaUrl = intent.getStringExtra(MEDIA_URL)
-        val isResume = intent.getBooleanExtra(MEDIA_RESUME, false)
+        media = intent.getParcelableExtra<Media>(MEDIA) ?: Media()
 
         setContent {
             BaseTheme {
                 val scope = rememberCoroutineScope()
                 drawerState = rememberDrawerState(DrawerValue.Closed)
-                exoPlayer = GetExoPlayer(stringUri = mediaUrl)
+                exoPlayer = GetExoPlayer(stringUri = media.mediaUrl)
                 navController = rememberNavController()
+
+                val resumePosition = dataStorage.getSynchronousData((media.name + media.subName).toPreferencesKey()) ?: 0
+                if (resumePosition > 0) {
+                    exoPlayer.seekTo(resumePosition)
+                }
+
 
                 BackHandler {
                     if (drawerState.currentValue == DrawerValue.Open) {
                         scope.launch {
+                            dataStorage.setSynchronousData((media.name + media.subName).toPreferencesKey(), exoPlayer.currentPosition)
                             val returnIntent = intent
                             returnIntent.putExtra(MEDIA_RESULT, DrawerScreen.FreeTVScreenDrawer.route)
                             setResult(RESULT_OK, returnIntent)
@@ -92,21 +102,21 @@ class StreamingActivity : AppCompatActivity() {
                         finish()
                     }
                 ) {
-                    MainStreaming(exoPlayer, isResume)
+                    MainStreaming(exoPlayer)
                 }
             }
         }
     }
 
     override fun onStop() {
+        dataStorage.setSynchronousData((media.name + media.subName).toPreferencesKey(), exoPlayer.currentPosition)
         exoPlayer.release()
         super.onStop()
     }
 
-    fun getIntent(context: Context, mediaUrl: String, isResume: Boolean = false): Intent{
+    fun getIntent(context: Context, media: Media): Intent{
         val intent = Intent(context, StreamingActivity::class.java);
-        intent.putExtra(MEDIA_URL, mediaUrl)
-        intent.putExtra(MEDIA_RESUME, isResume)
+        intent.putExtra(MEDIA, media)
         return intent
     }
 }

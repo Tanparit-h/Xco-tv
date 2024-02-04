@@ -42,11 +42,10 @@ import com.zicure.xcotv.utils.screenList
 @Composable
 fun MainDrawer(
     modifier: Modifier = Modifier,
+    drawerState: DrawerState,
     navController: NavHostController = rememberNavController(),
     builder: NavGraphBuilder.() -> Unit
 ) {
-    val drawerState = rememberDrawerState(DrawerValue.Closed)
-
     val scaleValue = 1f
 
     val navItemColor = NavigationDrawerItemDefaults.colors(

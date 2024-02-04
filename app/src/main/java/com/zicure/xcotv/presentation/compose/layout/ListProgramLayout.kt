@@ -92,7 +92,7 @@ fun ListProgramLayout(media: FreeTv, navMedia: (intent: Intent) -> Unit) {
                                 .focusable(),
                             onClick = {
                                 Log.d("TAG", "FreeTVScreen Banner: ${banner.name}")
-                                navMedia(StreamingActivity().getIntent(context = context, banner.mediaUrl))
+                                navMedia(StreamingActivity().getIntent(context = context, banner))
                             },
                             backgroundColor = Color.White,
                             border = BorderStroke(4.dp, borderColor),

@@ -180,7 +180,7 @@ fun SuggestProgramLayout(
                     fontWeight = FontWeight.Normal,
                     sizeIcon = 36
                 ) {
-                    navMedia(StreamingActivity().getIntent(context = context, media.mediaList[0].mediaUrl))
+                    navMedia(StreamingActivity().getIntent(context = context, media.mediaList[0]))
                 }
 
                 XcotvIconTextButton(
