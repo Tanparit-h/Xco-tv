@@ -52,19 +52,17 @@ fun MainNavigationDrawer(
             }
         }
         dialog(route = DrawerScreen.LogOutDrawer.route) {
-            if (openAlertDialog.value) {
-                AlertDialogLayout(
-                    onDismissRequest = { openAlertDialog.value = false },
-                    onConfirmation = {
-                        DataStorage(mContext).setSynchronousData(DataStorage.KEY_DEFAULT_LANGUAGE, "")
-                        val language = DataStorage(mContext).getSynchronousData(DataStorage.KEY_DEFAULT_LANGUAGE)
-                        language.isNullOrEmpty()
-                        closeAction()
-                    },
-                    dialogTitle = "Confirm Log Out",
-                    icon = Icons.Outlined.Logout
-                )
-            }
+            AlertDialogLayout(
+                onDismissRequest = { openAlertDialog.value = false },
+                onConfirmation = {
+                    DataStorage(mContext).setSynchronousData(DataStorage.KEY_DEFAULT_LANGUAGE, "")
+                    val language = DataStorage(mContext).getSynchronousData(DataStorage.KEY_DEFAULT_LANGUAGE)
+                    language.isNullOrEmpty()
+                    closeAction()
+                },
+                dialogTitle = "Confirm Log Out",
+                icon = Icons.Outlined.Logout
+            )
         }
     }
 }
