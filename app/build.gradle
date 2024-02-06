@@ -17,8 +17,13 @@ android {
         minSdk = 26
         targetSdk = 34
         versionCode = 1
-        versionName = "1.0"
+        versionName = "1.2"
 
+        applicationVariants.all { variant ->
+            variant.outputs.all {
+                outputFileName = "Xcotv-${variant.buildType.name}-${defaultConfig.versionName}.apk"
+            }
+        }
     }
 
     buildTypes {

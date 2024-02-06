@@ -44,33 +44,22 @@ fun FreeTVScreen(
     navMedia: (intent: Intent) -> Unit
 ) {
     val lifecycleOwner = LocalLifecycleOwner.current
-    var focusState by remember { mutableStateOf<FocusState?>(null) }
-    val focusRequester = remember { FocusRequester() }
     val freeTVMediaList = remember {
         mutableStateOf(FreeTVListModel(null))
     }
     getFreeTVListModel(viewModel, lifecycleOwner, freeTVMediaList)
-    LaunchedEffect(key1 = focusState) {
-        if (focusState?.hasFocus == false) {
-            focusRequester.requestFocus()
-        }
-    }
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
         val (surface) = createRefs()
         if (freeTVMediaList.value.freeTV?.size == 0) {
             Column(modifier = Modifier
-                .focusRequester(focusRequester)
                 .fillMaxSize()
                 .background(color = Color.Black)
-                .clickable { focusRequester.requestFocus() }
                 .focusable()
                 .constrainAs(surface) {
                     top.linkTo(parent.top)
                     bottom.linkTo(parent.bottom)
                     start.linkTo(parent.start)
                     end.linkTo(parent.end)
-                }.onFocusChanged {
-                    focusState = it
                 }) {
                 Text(text = "FreeTVScreen: ${freeTVMediaList.value.freeTV?.size}")
             }

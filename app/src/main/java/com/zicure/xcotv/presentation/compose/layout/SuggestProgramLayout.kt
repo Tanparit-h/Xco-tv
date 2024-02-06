@@ -61,13 +61,6 @@ fun SuggestProgramLayout(
     navMedia: (intent: Intent) -> Unit
 ) {
     val context = LocalContext.current
-    var focusState by remember { mutableStateOf<FocusState?>(null) }
-    val focusRequester = remember { FocusRequester() }
-    LaunchedEffect(key1 = focusState) {
-        if (focusState?.hasFocus == false) {
-            focusRequester.requestFocus()
-        }
-    }
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -167,11 +160,7 @@ fun SuggestProgramLayout(
                     .padding(top = 60.dp),
             ) {
                 XcotvIconTextButton(
-                    modifier = Modifier
-                        .focusRequester(focusRequester)
-                        .onFocusChanged {
-                            focusState = it
-                        },
+                    modifier = Modifier,
                     icon = Icons.Outlined.PlayCircleFilled,
                     text = ContextCompat.getString(LocalContext.current, R.string.play_now),
                     colorIcon = Color.Red,
