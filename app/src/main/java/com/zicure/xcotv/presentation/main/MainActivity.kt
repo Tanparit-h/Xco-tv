@@ -21,6 +21,7 @@ import com.zicure.xcotv.utils.DataStorage
 import com.zicure.xcotv.utils.DrawerScreen
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
+import kotlin.system.exitProcess
 
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
@@ -43,7 +44,7 @@ class MainActivity : AppCompatActivity() {
                 BackHandler {
                     if (drawerState.currentValue == DrawerValue.Open) {
                         scope.launch {
-                            finish()
+                            finishAffinity()
                         }
                     } else {
                         scope.launch {
@@ -59,7 +60,7 @@ class MainActivity : AppCompatActivity() {
                         mediaActivityResult.launch(it)
                     },
                     closeAction = {
-                        finish()
+                        finishAffinity()
                     }
                 )
             }
