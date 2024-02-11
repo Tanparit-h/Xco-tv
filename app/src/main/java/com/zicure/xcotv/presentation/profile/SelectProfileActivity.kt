@@ -39,7 +39,7 @@ import com.zicure.xcotv.utils.BaseTheme
 import com.zicure.xcotv.utils.DataStorage
 import com.zicure.xcotv.utils.DataStorage.Companion.KEY_USER_ID
 import com.zicure.xcotv.utils.Profile
-import com.zicure.xcotv.utils.XcotvTextButton
+import com.zicure.xcotv.utils.XcotvTagButton
 import com.zicure.xcotv.utils.fontFCIconic
 import com.zicure.xcotv.utils.grayFF1B1B1B
 import com.zicure.xcotv.utils.loadLocale
@@ -103,7 +103,7 @@ class SelectProfileActivity : AppCompatActivity() {
                 }
             }
 
-            XcotvTextButton(
+            XcotvTagButton(
                 modifier = Modifier
                     .padding(all = 16.dp),
                 text = getString(R.string.tx_manage_profile)

@@ -25,12 +25,11 @@ import androidx.tv.material3.DrawerState
 import androidx.tv.material3.DrawerValue
 import androidx.tv.material3.ExperimentalTvMaterial3Api
 import androidx.tv.material3.Icon
-import androidx.tv.material3.NavigationDrawer
 import androidx.tv.material3.NavigationDrawerItem
 import androidx.tv.material3.NavigationDrawerItemDefaults
 import androidx.tv.material3.NavigationDrawerItemScale
 import androidx.tv.material3.Text
-import androidx.tv.material3.rememberDrawerState
+import com.zicure.xcotv.presentation.compose.layout.XcoNavigationDrawer
 import com.zicure.xcotv.utils.DrawerScreen
 import com.zicure.xcotv.utils.fontFCIconic
 import com.zicure.xcotv.utils.grayFFAAAAAA
@@ -69,7 +68,7 @@ fun MainDrawer(
         pressedSelectedScale = scaleValue
     )
 
-    NavigationDrawer(
+    XcoNavigationDrawer(
         drawerState = drawerState,
         drawerContent = {
             Column(

@@ -49,7 +49,7 @@ import com.zicure.xcotv.domain.model.FreeTv
 import com.zicure.xcotv.presentation.streaming.StreamingActivity
 import com.zicure.xcotv.utils.MultiColorText
 import com.zicure.xcotv.utils.XcotvIconTextButton
-import com.zicure.xcotv.utils.XcotvTextButton
+import com.zicure.xcotv.utils.XcotvTagButton
 import com.zicure.xcotv.utils.fontFCIconic
 import com.zicure.xcotv.utils.grayFF616161
 import com.zicure.xcotv.utils.grayFFAAAAAA
@@ -58,9 +58,11 @@ import com.zicure.xcotv.utils.grayFFAAAAAA
 @OptIn(ExperimentalGlideComposeApi::class)
 fun SuggestProgramLayout(
     media: FreeTv,
-    navMedia: (intent: Intent) -> Unit
+    navMedia: (intent: Intent) -> Unit,
 ) {
     val context = LocalContext.current
+    var focusState by remember { mutableStateOf<FocusState?>(null) }
+    val focusRequester = remember { FocusRequester() }
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -126,7 +128,7 @@ fun SuggestProgramLayout(
                 )
 
                 media.mediaList[0].tagList.forEach { tag ->
-                    XcotvTextButton(
+                    XcotvTagButton(
                         modifier = Modifier
                             .padding(start = 20.dp),
                         text = tag.name,
@@ -160,7 +162,11 @@ fun SuggestProgramLayout(
                     .padding(top = 60.dp),
             ) {
                 XcotvIconTextButton(
-                    modifier = Modifier,
+                    modifier = Modifier
+                        .focusRequester(focusRequester)
+                        .onFocusChanged {
+                            focusState = it
+                        },
                     icon = Icons.Outlined.PlayCircleFilled,
                     text = ContextCompat.getString(LocalContext.current, R.string.play_now),
                     colorIcon = Color.Red,
@@ -197,5 +203,9 @@ fun SuggestProgramLayout(
                 ) {}
             }
         }
+    }
+
+    LaunchedEffect(Unit) {
+        focusRequester.requestFocus()
     }
 }

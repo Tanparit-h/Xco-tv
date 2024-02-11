@@ -27,6 +27,7 @@ import androidx.compose.ui.platform.LocalLifecycleOwner
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.lifecycle.LifecycleOwner
 import androidx.tv.material3.DrawerState
+import androidx.tv.material3.DrawerValue
 import androidx.tv.material3.ExperimentalTvMaterial3Api
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
 import com.zicure.xcotv.domain.model.FreeTVListModel
@@ -47,6 +48,7 @@ fun FreeTVScreen(
     val freeTVMediaList = remember {
         mutableStateOf(FreeTVListModel(null))
     }
+
     getFreeTVListModel(viewModel, lifecycleOwner, freeTVMediaList)
     ConstraintLayout(modifier = Modifier.fillMaxSize()) {
         val (surface) = createRefs()
@@ -77,19 +79,25 @@ fun FreeTVScreen(
                     when (media.type) {
                         MediaListType.SUGGEST_PROGRAM -> {
                             item {
-                                SuggestProgramLayout(media, navMedia)
+                                SuggestProgramLayout(
+                                    media = media,
+                                   navMedia = navMedia
+                                )
                             }
                         }
+
                         MediaListType.LIST_PROGRAM -> {
                             item {
                                 ListProgramLayout(media, navMedia)
                             }
                         }
+
                         MediaListType.LIST_BANNER -> {
                             item {
 //                                ListProgramLayout(media)
                             }
                         }
+
                         else -> {
                             item {
                                 ListProgramLayout(media, navMedia)

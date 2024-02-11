@@ -13,7 +13,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
 @Composable
-fun XcotvTextButton(
+fun XcotvTagButton(
     modifier: Modifier = Modifier,
     text: String,
     colorButton: Color = Color.White,

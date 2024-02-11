@@ -51,11 +51,10 @@ fun XcotvIconTextButton(
         }
     }
     Button(
-        modifier = Modifier
+        modifier = modifier
             .wrapContentSize(unbounded = true)
             .onFocusEvent(::applyColors)
-            .focusable()
-            .then(modifier),
+            .focusable(),
         shape = RoundedCornerShape(16),
         colors = ButtonDefaults.buttonColors(
             containerColor = colorButton,

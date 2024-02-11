@@ -13,6 +13,10 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.input.key.Key
+import androidx.compose.ui.input.key.KeyEvent
+import androidx.compose.ui.input.key.key
+import androidx.compose.ui.input.key.onKeyEvent
 import androidx.compose.ui.platform.LocalContext
 import androidx.media3.exoplayer.ExoPlayer
 import androidx.navigation.NavController
@@ -57,24 +61,30 @@ class StreamingActivity : AppCompatActivity() {
                 exoPlayer = GetExoPlayer(stringUri = media.mediaUrl)
                 navController = rememberNavController()
 
-                val resumePosition = dataStorage.getSynchronousData((media.name + media.subName).toPreferencesKey()) ?: 0
+                val resumePosition =
+                    dataStorage.getSynchronousData((media.name + media.subName).toPreferencesKey())
+                        ?: 0
                 if (resumePosition > 0) {
                     exoPlayer.seekTo(resumePosition)
                 }
 
 
                 BackHandler {
-                    if (drawerState.currentValue == DrawerValue.Open) {
-                        scope.launch {
-                            dataStorage.setSynchronousData((media.name + media.subName).toPreferencesKey(), exoPlayer.currentPosition)
+                    scope.launch {
+                        if (drawerState.currentValue == DrawerValue.Closed) {
+                            dataStorage.setSynchronousData(
+                                (media.name + media.subName).toPreferencesKey(),
+                                exoPlayer.currentPosition
+                            )
                             val returnIntent = intent
-                            returnIntent.putExtra(MEDIA_RESULT, DrawerScreen.FreeTVScreenDrawer.route)
+                            returnIntent.putExtra(
+                                MEDIA_RESULT,
+                                DrawerScreen.FreeTVScreenDrawer.route
+                            )
                             setResult(RESULT_OK, returnIntent)
                             finish()
-                        }
-                    } else {
-                        scope.launch {
-                            drawerState.open()
+                        } else {
+                            drawerState.close()
                         }
                     }
                 }
@@ -92,7 +102,25 @@ class StreamingActivity : AppCompatActivity() {
                     }
                 }
                 VideoDrawer(
-                    modifier = Modifier,
+                    modifier = Modifier
+                        .onKeyEvent {
+                            when (it.key) {
+                                Key.DirectionLeft -> {
+                                    scope.launch {
+                                        drawerState.open()
+                                    }
+                                    true
+                                }
+                                Key.DirectionRight -> {
+                                    scope.launch {
+                                        drawerState.close()
+                                    }
+                                    true
+                                }
+
+                                else -> false
+                            }
+                        },
                     drawerState = drawerState,
                     navController = navController,
                     onClickAction = { route ->
@@ -109,12 +137,15 @@ class StreamingActivity : AppCompatActivity() {
     }
 
     override fun onStop() {
-        dataStorage.setSynchronousData((media.name + media.subName).toPreferencesKey(), exoPlayer.currentPosition)
+        dataStorage.setSynchronousData(
+            (media.name + media.subName).toPreferencesKey(),
+            exoPlayer.currentPosition
+        )
         exoPlayer.release()
         super.onStop()
     }
 
-    fun getIntent(context: Context, media: Media): Intent{
+    fun getIntent(context: Context, media: Media): Intent {
         val intent = Intent(context, StreamingActivity::class.java);
         intent.putExtra(MEDIA, media)
         return intent
