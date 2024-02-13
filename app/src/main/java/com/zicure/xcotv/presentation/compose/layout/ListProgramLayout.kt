@@ -1,9 +1,14 @@
 package com.zicure.xcotv.presentation.compose.layout
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.util.Log
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.focusable
+import androidx.compose.foundation.gestures.snapping.SnapLayoutInfoProvider
+import androidx.compose.foundation.gestures.snapping.SnapPositionInLayout
+import androidx.compose.foundation.gestures.snapping.rememberSnapFlingBehavior
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -15,6 +20,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Card
 import androidx.compose.material.ExperimentalMaterialApi
@@ -32,6 +38,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.Density
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.bumptech.glide.integration.compose.ExperimentalGlideComposeApi
@@ -42,10 +49,20 @@ import com.zicure.xcotv.utils.fontFCIconic
 import com.zicure.xcotv.utils.grayFF616161
 
 
+@SuppressLint("RememberReturnType")
 @Composable
-@OptIn(ExperimentalGlideComposeApi::class, ExperimentalMaterialApi::class)
+@OptIn(ExperimentalGlideComposeApi::class, ExperimentalMaterialApi::class,
+    ExperimentalFoundationApi::class
+)
 fun ListProgramLayout(media: FreeTv, navMedia: (intent: Intent) -> Unit) {
     val context = LocalContext.current
+
+    val scrollState = rememberLazyListState()
+    val positionInLayout = SnapPositionInLayout { _, _, _, _, _ ->
+        0
+    }
+    val snappingLayout = remember(scrollState) { SnapLayoutInfoProvider(scrollState, positionInLayout) }
+    val flingBehavior = rememberSnapFlingBehavior(snappingLayout)
     Box(
         modifier = Modifier
             .fillMaxWidth()
@@ -71,6 +88,8 @@ fun ListProgramLayout(media: FreeTv, navMedia: (intent: Intent) -> Unit) {
                     .fillMaxWidth()
                     .padding(top = 5.dp, bottom = 10.dp)
                     .wrapContentHeight(unbounded = true),
+                state = scrollState,
+                flingBehavior = flingBehavior,
                 horizontalArrangement = Arrangement.spacedBy(16.dp),
                 contentPadding = PaddingValues(horizontal = 12.dp, vertical = 24.dp)
             ) {
